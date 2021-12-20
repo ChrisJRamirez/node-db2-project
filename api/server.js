@@ -1,8 +1,15 @@
-const express = require("express")
+const express = require("express");
 
-const server = express()
+const carRouter = require("./cars/cars-router");
 
-// DO YOUR MAGIC
-// will do magic here, just setting up intitial commit
+const server = express();
+
+server.use(express.json());
+
+server.use("/api/cars", carRouter);
+
+server.get("/", (req, res) => {
+  res.status(200).json({api: "up and running"})
+})
 
 module.exports = server
